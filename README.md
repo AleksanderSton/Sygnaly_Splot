@@ -1,7 +1,7 @@
 # Analizator Sygnałów - Ręczny Splot
 
-Program desktopowy do analizy i obróbki sygnałów zapisanych w plikach CSV.  
-Pozwala na wczytywanie sygnałów, wizualizację (oscylogram + FFT), wykonywanie ręcznego splotu oraz zapis wyników.
+Program do analizy i obróbki sygnałów zapisanych w plikach CSV.  
+Pozwala na wczytywanie sygnałów, wizualizację, wykonywanie ręcznego splotu oraz zapis wyników.
 
 ---
 
