@@ -12,7 +12,7 @@ Pozwala na wczytywanie sygnałów, wizualizację, wykonywanie ręcznego splotu o
 - Wyświetlanie oscylogramu oraz widma częstotliwościowego (FFT).
 - Ręczne wykonywanie splotu dwóch wybranych sygnałów.
 - Zapis wynikowego sygnału do pliku CSV.
-- Zapis aktualnie wyświetlanego wykresu do pliku PNG lub PDF.
+- Zapis aktualnie wyświetlanego wykresu do pliku PNGter.
 - Intuicyjny interfejs graficzny zbudowany w `tkinter`.
 
 ---
@@ -27,9 +27,9 @@ Program został napisany w Pythonie 3 i korzysta z następujących bibliotek:
 - `matplotlib`
 - `seaborn`
 - `scipy`
-
 ---
-
+Wersja Python użyta do programu to:
+'Python 3.10.12'
 ## Instalacja wymaganych pakietów
 
 Wystarczy zainstalować potrzebne pakiety za pomocą `pip`:
