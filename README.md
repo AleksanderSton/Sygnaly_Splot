@@ -29,7 +29,7 @@ Program został napisany w Pythonie 3 i korzysta z następujących bibliotek:
 - `scipy`
 ---
 Wersja Python użyta do programu to:
-'Python 3.10.12'
+`Python 3.10.12`
 ## Instalacja wymaganych pakietów
 
 Wystarczy zainstalować potrzebne pakiety za pomocą `pip`:
