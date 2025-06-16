@@ -440,7 +440,7 @@ Analizator Sygnałów - Instrukcja użytkowania:
 
 OBSŁUGIWANE FORMATY CSV:
 - Pliki z danymi sygnałów z automatycznym wykrywaniem formatu:
-  * Pierwsza kolumna jako czas (jeśli zawiera rosnące wartości >= 0)
+  * Pierwsza kolumna jako czas (jeśli zawiera rosnące wartości od 0 do 1)
   * Lub automatyczne generowanie czasu (domyślnie 1000 Hz)
 - Separatory: ; lub , (automatyczne wykrywanie)
 - Jeden lub więcej kanałów danych w kolejnych kolumnach
@@ -464,7 +464,7 @@ UWAGI:
     help_menu.add_command(label="Instrukcja", command=show_help)
     help_menu.add_command(label="O programie",
                           command=lambda: messagebox.showinfo("O programie",
-                                                              "Analizator Sygnałów v2.2\n"
+                                                              "Analizator Sygnałów v1.0\n"
                                                               "Program do analizy sygnałów z plików CSV\n"
                                                               "Automatyczne wykrywanie formatu czasowego\n"
                                                               "Poprawne obliczanie czasu dla splotu"))
