@@ -153,20 +153,33 @@ class SignalAnalyzer:
                 n_cols = len(df.columns)
                 n_samples = len(df)
 
-                # Generujemy czas - wszystkie kolumny to kanały danych
-                # Zakładamy próbkowanie 1000 Hz
-                time_data = np.arange(n_samples) * 0.001
+                # Sprawdzamy czy pierwsza kolumna zawiera dane czasowe
+                first_col = df.iloc[:, 0].values
+                if n_cols > 1:
+                    # Sprawdzamy czy pierwsza kolumna może być czasem (rosnące wartości)
+                    if np.all(np.diff(first_col) > 0) and np.all(first_col >= 0):
+                        # Pierwsza kolumna to czas
+                        time_data = first_col
+                        data_start_col = 1
+                    else:
+                        # Generujemy czas - zakładamy próbkowanie 1000 Hz
+                        time_data = np.arange(n_samples) * 0.001
+                        data_start_col = 0
+                else:
+                    # Tylko jedna kolumna - generujemy czas
+                    time_data = np.arange(n_samples) * 0.001
+                    data_start_col = 0
 
-                # Dodajemy sygnały ze wszystkich kolumn
-                for col_idx in range(n_cols):
-                    signal_name = f"{filename}_Kanal_{col_idx + 1}"
+                # Dodajemy sygnały z pozostałych kolumn
+                for col_idx in range(data_start_col, n_cols):
+                    signal_name = f"{filename}_Kanal_{col_idx - data_start_col + 1}"
                     signal_data = df.iloc[:, col_idx].values
 
                     all_data[signal_name] = {
                         'time': time_data,
                         'amplitude': signal_data,
                         'file': filename,
-                        'channel': col_idx + 1
+                        'channel': col_idx - data_start_col + 1
                     }
 
             if not all_data:
@@ -426,9 +439,9 @@ def main():
 Analizator Sygnałów - Instrukcja użytkowania:
 
 OBSŁUGIWANE FORMATY CSV:
-- Pliki z danymi sygnałów bez nagłówków
-- Wszystkie kolumny zawierają kanały danych (nie czas)
-- Czas generowany automatycznie z częstotliwością 1000 Hz
+- Pliki z danymi sygnałów z automatycznym wykrywaniem formatu:
+  * Pierwsza kolumna jako czas (jeśli zawiera rosnące wartości >= 0)
+  * Lub automatyczne generowanie czasu (domyślnie 1000 Hz)
 - Separatory: ; lub , (automatyczne wykrywanie)
 - Jeden lub więcej kanałów danych w kolejnych kolumnach
 
@@ -445,17 +458,16 @@ UWAGI:
 - Splot oblicza poprawny czas wynikowy na podstawie czasów oryginalnych sygnałów
 - Program automatycznie interpoluje sygnały do wspólnego kroku czasowego
 - Wynik splotu zawiera informacje o zakresie czasowym
-- Wszystkie kanały traktowane są jako dane sygnałów
         """
         messagebox.showinfo("Pomoc", help_text)
 
     help_menu.add_command(label="Instrukcja", command=show_help)
     help_menu.add_command(label="O programie",
                           command=lambda: messagebox.showinfo("O programie",
-                                                              "Analizator Sygnałów v1.0\n"
+                                                              "Analizator Sygnałów v2.2\n"
                                                               "Program do analizy sygnałów z plików CSV\n"
-                                                              "Automatyczne generowanie czasu (1000 Hz)\n"
-                                                              "Wszystkie kolumny to kanały danych"))
+                                                              "Automatyczne wykrywanie formatu czasowego\n"
+                                                              "Poprawne obliczanie czasu dla splotu"))
 
     root.mainloop()
 
