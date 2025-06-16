@@ -12,8 +12,8 @@ def wczytaj_sygnal(nazwa_pliku):
         exit()
 
 def main():
-    plik1 ='syg1_1_1024.csv'
-    plik2 ='syg3_1_256.csv'
+    plik1 ='impuls_1_100.csv' #'syg1_1_1024.csv'
+    plik2 = 'impuls_2_100.csv'#'syg3_1_256.csv'
 
     sygnal1 = wczytaj_sygnal(plik1)
     sygnal2 = wczytaj_sygnal(plik2)
